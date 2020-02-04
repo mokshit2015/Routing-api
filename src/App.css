@@ -2,6 +2,19 @@
   text-align: center;
 }
 
+
+table{
+  width: 100%;
+}
+
+tr{
+    text-align: center;
+}
+
+td{
+border: 1px solid black;
+}
+
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -36,3 +49,4 @@
     transform: rotate(360deg);
   }
 }
+
