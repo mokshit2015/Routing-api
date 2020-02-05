@@ -15,7 +15,9 @@ class New extends React.Component {
 			updatedId : "",
 			newFName : "",
 			newLName : "",
-			show : false
+			show : false,
+			isEdit : false,
+			isAdd : false
 		}
 	}
 
@@ -36,6 +38,9 @@ class New extends React.Component {
 	 } 
 
 	 updateUser = () => {
+		 this.setState({
+			 isEdit : true
+		 })
 		axios.put(`https://reqres.in/api/users/${this.state.updatedId}`,{
 			name : this.state.updatedFName,
 			job : this.state.updatedLName
@@ -49,6 +54,7 @@ class New extends React.Component {
 					show:false
 				})
 				alert("Successfully Updated"); 
+				this.props.history.push('/list');
 			}
 		  	else
 		   alert("error")
@@ -56,6 +62,9 @@ class New extends React.Component {
 	 }
 
 	 addUser = () => {
+		this.setState({
+			isAdd : true
+		})
 		axios.post(`https://reqres.in/api/users`,{
 			name : this.state.newFName,
 			job : this.state.newLName
@@ -65,9 +74,9 @@ class New extends React.Component {
 				this.setState({
 					newFName:'',
 					newLName:'',
-					
 				})
 				alert("Successfully Inserted"); 
+				this.props.history.push('/list');		
 			}
 		  	else
 		   alert("error")
@@ -76,7 +85,7 @@ class New extends React.Component {
 
 	render() {
 		const { params } = this.props.match;
-		const { updatedFName , updatedLName} = this.state;
+		const { updatedFName , updatedLName,isEdit,isAdd} = this.state;
 		let element;
 		if (params.id === "new") {
 			element = <Form>
@@ -97,8 +106,12 @@ class New extends React.Component {
 					</Col>
 				</Form.Group>
 				<Form.Group as={Row} >
-				<Button column sm="1" variant="outline-success" onClick={this.addUser}>Submit</Button>
-				<Link column sm="2" to={`/list`}><Button variant="outline-danger" >Cancel</Button></Link>
+				<Col sm="1">	
+				<Button variant="outline-success" onClick={this.addUser}>{isAdd ? 'Adding...' : 'Submit'}</Button>
+				</Col>
+				<Col sm="1">
+				<Link column  to={`/list`}><Button variant="outline-danger" >Cancel</Button></Link>
+				</Col>
 				</Form.Group>
 						
 			</Form>;
@@ -121,10 +134,15 @@ class New extends React.Component {
 				<Col sm="9">
 					<input type="text" name="updatedLName" value={updatedLName} className="form-control" onChange={this.dataUpdate} />
 				</Col>
-			</Form.Group>
-			<Button variant="outline-success" onClick={this.updateUser}>Edit</Button>
+			</Form.Group >
+			<Form.Group as={Row} >
+			<Col sm="1">
+			<Button variant="outline-success" onClick={this.updateUser}>{isEdit ? 'Editing...' : 'Edit'}</Button>
+			</Col>
+			<Col sm="1">
 			<Link to={`/list`}><Button variant="outline-danger" >Cancel</Button></Link>
-			
+			</Col>
+			</Form.Group>
 		</Form>;
 		}
 		return (

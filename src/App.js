@@ -1,5 +1,5 @@
 import React from 'react';
-import {BrowserRouter,Link,Route,Switch} from 'react-router-dom';
+import {BrowserRouter,Link,Route,Switch,Redirect} from 'react-router-dom';
 import ListData from './ListData';
 import './App.css';
 
@@ -8,10 +8,12 @@ class App extends React.Component {
     super(props);
     
   }
+  
   render(){
+    
     return(
       <div>
-        <h1> Hi </h1>
+        <Redirect to='/list'/>
       </div>
     );
   }

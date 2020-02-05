@@ -14,9 +14,6 @@ const routing = (
             <h3> Demo  </h3>
             <ul>
                 <li>
-                    <Link to="/">Home</Link>
-                </li>
-                <li>
                     <Link to="/list">List</Link>
                 </li>
                 <li>
