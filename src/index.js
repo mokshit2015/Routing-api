@@ -24,8 +24,6 @@ const routing = (
                 <Route exact path="/" component={App}></Route>
                 <Route  path="/list/:id" component={New}></Route>
                 <Route  path="/list" component={ListData}></Route>
-                
-                {/* <Route  path="/contact" component={Contact}></Route> */}
             </Switch>
         </div>
     </BrowserRouter>

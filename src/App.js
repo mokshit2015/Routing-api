@@ -1,19 +1,12 @@
 import React from 'react';
-import {BrowserRouter,Link,Route,Switch,Redirect} from 'react-router-dom';
-import ListData from './ListData';
+import { Redirect } from 'react-router-dom';
 import './App.css';
 
 class App extends React.Component {
-  constructor(props){
-    super(props);
-    
-  }
-  
-  render(){
-    
-    return(
+  render() {
+    return (
       <div>
-        <Redirect to='/list'/>
+        <Redirect to='/list' />
       </div>
     );
   }
